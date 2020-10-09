@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          #以下几项为kafka环境配置，格式为：spring.cloud.stream.kafka.binder.xxx
+          brokers: #Kafka的消息中间件服务器
+            - 192.168.6.128:9091
+            - 192.168.6.128:9092
+            - 192.168.6.128:9093
+          requiredAcks: 1  #等leader回复
+          #autoCreateTopics: true   #自动创建主题
+        #以下几项配置生产者配置，格式为：spring.cloud.stream.kafka.bindings.<channel-name>.xxx
+        bindings:
+          output:    #通道名称
+            destination: stream-demo    #消息发往的目的地，即topic名称
+            content-type: text/plain    #消息发送的格式，接收端不用指定格式，但是发送端要
+          input:
+            destination: stream-demo    #消费的主题名
+
+
