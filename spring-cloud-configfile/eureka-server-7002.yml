@@ -1,0 +1,15 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: eureka-server
+eureka:
+  instance:
+    hostname: registry7002
+  client:
+    #register-with-eureka: false
+    #fetch-registry: false
+    service-url:
+      defaultZone: http://registry7001:7001/eureka/,http://registry7003:7003/eureka/
+    

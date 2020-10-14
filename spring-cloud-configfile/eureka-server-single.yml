@@ -1,0 +1,15 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: eureka-server
+    
+eureka:
+  instance:
+    hostname: registry7001
+  client:
+    register-with-eureka: false #因为eureka把自己当成客户端，会向注册中心注册，这样会造成自己向自己注册，所以这里设置成false，不向注册中心注册
+    fetch-registry: false #因为本应用是服务注册中心，不需要拉取注册信息，所以设置成false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
