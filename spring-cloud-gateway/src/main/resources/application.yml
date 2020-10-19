@@ -1,0 +1,23 @@
+server:
+  port: 3001
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        #静态路由方式
+        - id: dept
+          uri: http://localhost:8001
+          predicates:
+            - Path=/**
+          filters:
+            #对该路由配置过滤器
+            #如果自定义过滤器命名符合xxxGatewayFilterFactor格式，则只填写过滤器的前缀即可（即xxx）
+            #如果自定义过滤器命名不符合xxxGatewayFilterFactor格式，则需要填写过滤器名字全称
+            - Auth
+      discovery:
+        locator:
+          #开启服务发现路由方式，请求地址格式为：http://ip:port/服务名称/服务资源路径
+          #服务名称需要与注册中心的服务名称大小写保持一致
+          enabled: true

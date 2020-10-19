@@ -1,0 +1,7 @@
+spring:
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    sampler:
+      #采样比例，10即10%，100即所有请求都采样
+      rate: 10
